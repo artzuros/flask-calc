@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block body %}     
+
+      <div class = "container my-3">
+        <h2>Add a calculation </h2>
+        <form action="/" method = "POST">
+            <div class="mb-3">
+              <label for="title" class="form-label">Operand 1</label>
+              <input type="number" class="form-control" name = "operand1" id="operand1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Operand 2</label>
+              <input type="number" class="form-control" name = "operand2" id="operand2" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="desc" class="form-label">Operator</label>
+              <input type="text" class="form-control" name = "operator" id="operator">
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+          </form>
+      </div>
+      <div class="container my-5">
+        <h2>
+            Your calculations
+        </h2>
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Index</th>
+      <th scope="col">id</th>
+      <th scope="col">Operand 1</th>
+      <th scope="col">Operand 2</th>
+      <th scope="col">Operator</th>
+      <th scope="col">Result</th>
+      <th scope="col">Date-Time</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for calc in allCalc %}
+    <tr>
+      <th scope = "row">{{loop.index}}</th>
+      <td>{{calc.id}}</td>
+      <td>{{calc.operand1}}</td>
+      <td>{{calc.operand2}}</td>
+      <td>{{calc.operator}}</td>
+      <td>{{calc.result}}</td>
+      <td>{{calc.date_added}}</td>
+      <td>
+        <a href = "update/{{calc.id}}" type="button" class="btn btn-outline-info btn-sm mx-1">Update</button>
+        <a href = "delete/{{calc.id}}" type="button" class="btn btn-outline-danger btn-sm mx-1">Delete</button>
+      </td>
+    </tr>
+      
+    {% endfor %}
+  </tbody>
+</table>
+      </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+    {% endblock body %}
